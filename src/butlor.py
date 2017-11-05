@@ -63,7 +63,7 @@ def main():
                 elif text == 'goodbye':
                     status_ui.status('stopping')
                     print('Bye!')
-                    led.set_state(aiy.voicehat.LED.DECAY)
+                    led.set_state(aiy.voicehat.LED.OFF)
                     aiy.audio.say(text)
                     break
                 elif 'what is your IP' in text:
