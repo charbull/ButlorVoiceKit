@@ -4,7 +4,7 @@
 """ Schizophrenic Bot: Google Assistant and Butlor """
 
 import logging
-
+import subprocess
 import re
 import aiy.assistant.grpc
 import aiy.audio
@@ -66,9 +66,36 @@ def main():
                     led.set_state(aiy.voicehat.LED.DECAY)
                     aiy.audio.say(text)
                     break
+                elif 'what is your IP' in text:
+                    status_ui.status('stopping')
+                    say_ip()
+                elif 'shut down' in text:
+                    status_ui.status('stopping')
+                    power_off_pi()
+                elif 'reboot' in text:
+                    status_ui.status('stopping')
+                    reboot_pi()
                 else:
                     print('Handled by Google Assitant "', text, '"')
                     aiy.audio.play_audio(audio)
+
+
+def power_off_pi():
+    aiy.audio.say('Good bye!')
+    subprocess.call('sudo shutdown now', shell=True)
+
+
+def reboot_pi():
+    aiy.audio.say('See you in a bit!')
+    subprocess.call('sudo reboot', shell=True)
+
+
+def say_ip():
+    ip_address = subprocess.check_output("hostname -I | cut -d' ' -f1", shell=True)
+    aiy.audio.say('My IP address is %s' % ip_address.decode('utf-8'))
+
+
+
 
 
 if __name__ == '__main__':
