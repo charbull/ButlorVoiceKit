@@ -37,6 +37,12 @@ def post_conversation(butlor_message):
     print(data)
     var_error = re.search('error', response.text)
     if var_error:
+        var_token = re.search('TokenExpired', response.text)
+        if var_token:
+            #Force Global to null to referesh the token
+            global global_ACCESS_TOKEN
+            global_ACCESS_TOKEN = ""
+            ask_butlor(butlor_message)
         print("error detected")
         return -1
 

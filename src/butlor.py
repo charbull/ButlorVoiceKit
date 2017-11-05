@@ -47,7 +47,7 @@ def main():
                 butler_command = re.match(butlor_hotword, text)
                 #Butlor is invoked
                 if butler_command:
-                    #Stop Google Assistant
+                    #Stop VoiceHat from listening
                     status_ui.status('stopping')
 
                     #Handle the Command with Butlor
@@ -63,8 +63,11 @@ def main():
                 elif text == 'goodbye':
                     status_ui.status('stopping')
                     print('Bye!')
+                    led.set_state(aiy.voicehat.LED.DECAY)
+                    aiy.audio.say(text)
                     break
                 else:
+                    print('Handled by Google Assitant "', text, '"')
                     aiy.audio.play_audio(audio)
 
 
