@@ -9,6 +9,7 @@ import re
 import aiy.assistant.grpc
 import aiy.audio
 import aiy.voicehat
+import aiy._drivers._buzzer
 from mschatbot import ask_butlor
 
 
@@ -22,8 +23,10 @@ def main():
     """ Main Butlor """
     status_ui = aiy.voicehat.get_status_ui()
     led = aiy.voicehat.get_led()
-
+    #buzzer = aiy._drivers._buzzer.Buzzer(channel=22)
     status_ui.status('starting')
+    #buzzer.buzz(20)
+
     assistant = aiy.assistant.grpc.get_assistant()
     button = aiy.voicehat.get_button()
     ok_google_hotword = "OK Google "

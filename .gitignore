@@ -1,3 +1,14 @@
 env
 __pycache__
 *.pyc
+src/secret.txt
+.vscode/.ropeproject/config.py
+.vscode/.ropeproject/objectdb
+.gitignore
+.gitignore
+.DS_Store
+.gitignore
+scripts/install-services.sh
+.gitignore
+.gitignore
+.gitignore
